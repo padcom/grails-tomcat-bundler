@@ -52,6 +52,18 @@ target(prepareDistributionPackage: 'Creates a Zip archive for deployment') {
 		todir: "target/deployment-creator/${grailsAppName}/webapps"
 	)
 
+	grailsConsole.updateStatus 'Copying common deployment overrides...'
+
+	ant.copy(todir: "target/deployment-creator/${grailsAppName}") {
+		fileset(dir: 'deployment/common')
+	}
+
+	grailsConsole.updateStatus 'Copying ${grailsEnv} deployment overrides...'
+
+	ant.copy(todir: "target/deployment-creator/${grailsAppName}") {
+		fileset(dir: "deployment/${grailsEnv}")
+	}
+
 	grailsConsole.updateStatus 'Creating deployment archive...'
 
 	ant.zip(
@@ -59,7 +71,7 @@ target(prepareDistributionPackage: 'Creates a Zip archive for deployment') {
 		basedir : "target/deployment-creator"
 	)
 
-	grailsConsole.updateStatus "Done creating deployment archive target/${outputFile}"
+	grailsConsole.updateStatus "Done creating deployment archive target/${outputFile} for ${grailsEnv}"
 }
 
 setDefaultTarget('prepareDistributionPackage')
