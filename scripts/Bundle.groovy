@@ -52,13 +52,13 @@ target(prepareDistributionPackage: 'Creates a Zip archive for deployment') {
 		todir: "target/deployment-creator/${grailsAppName}/webapps"
 	)
 
-	grailsConsole.updateStatus 'Copying common deployment overrides...'
+	grailsConsole.updateStatus 'Copying common deployment resources...'
 
 	ant.copy(todir: "target/deployment-creator/${grailsAppName}") {
 		fileset(dir: 'deployment/common')
 	}
 
-	grailsConsole.updateStatus 'Copying ${grailsEnv} deployment overrides...'
+	grailsConsole.updateStatus 'Copying ${grailsEnv} deployment resource overrides...'
 
 	ant.copy(todir: "target/deployment-creator/${grailsAppName}") {
 		fileset(dir: "deployment/${grailsEnv}")
