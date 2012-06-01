@@ -9,8 +9,8 @@ target(prepareDistributionPackage: 'Creates a Zip archive for deployment') {
 	depends(checkVersion, configureWarName, war)
 
 	def outputFile = config.deployment.file ?: "${grailsAppName}-${metadata.getApplicationVersion()}.zip"
-	def tomcatVersion = config.deployment.tomcat.version ?: "7.0.25"
-	def tomcatUrl = config.deployment.tomcat.url ?: "http://ftp.tpnet.pl/vol/d1/apache/tomcat/tomcat-7/v7.0.25/bin/apache-tomcat-7.0.25.zip"
+	def tomcatVersion = config.deployment.tomcat.version ?: "7.0.27"
+	def tomcatUrl = config.deployment.tomcat.url ?: "http://www.idg.pl/mirrors/apache/tomcat/tomcat-7/v7.0.27/bin/apache-tomcat-7.0.27.zip"
 
 	grailsConsole.updateStatus "Generating deployment package..."
 
